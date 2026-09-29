@@ -1,0 +1,2 @@
+source /home/nishant/embedded-telemetry-system/embedded-telemetry-system/build/bootloader/gdbinit/symbols
+source /home/nishant/embedded-telemetry-system/embedded-telemetry-system/build/bootloader/gdbinit/connect
