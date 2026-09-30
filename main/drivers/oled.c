@@ -1,4 +1,6 @@
 #include "driver/i2c_master.h"
+#include "oled.h"
+#include <stdint.h>
 
 static i2c_master_bus_handle_t bus_handle;
 static i2c_master_dev_handle_t dev_handle;
@@ -167,7 +169,7 @@ bool oled_init(gpio_num_t sda, gpio_num_t scl){
     };
     size_t size = sizeof(commands)/ sizeof(commands[0]);
     for(int i = 0; i < size; i++){
-        if(!oled_send_command(commands[i],timeout)) return false;
+        if(!oled_send_command(commands[i],100)) return false;
     }
     return true;
 
@@ -187,6 +189,9 @@ bool oled_clear(void){
 
 }
 bool oled_write_text(const char *text){
+    if(text == NULL){
+        return false;
+    }
     int i = 0; 
     while(text[i] != '\0'){
         char curr = text[i]; 

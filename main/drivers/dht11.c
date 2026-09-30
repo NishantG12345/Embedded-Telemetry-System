@@ -1,6 +1,8 @@
 //uses pulse width encoding short high for 0 long high for 1
 #include "dht11.h"
 #include "esp_rom_sys.h"
+#include <stdio.h>
+#include <stdint.h> 
 static bool wait_level(gpio_num_t num, int level, int timeout){
     int time = 0; 
     while(!(gpio_get_level(num) == level)){
@@ -8,7 +10,7 @@ static bool wait_level(gpio_num_t num, int level, int timeout){
         time++;
         if(time >= timeout){
             return false;
-        };
+        }
     }
     return true;
 }
@@ -29,6 +31,9 @@ bool dht11_init(gpio_num_t num){
 }   
 
 bool dht11_read(gpio_num_t num, dht11_data* sensor_data){
+    if(sensor_data == NULL){
+        return false;
+    }
     gpio_set_direction(num,GPIO_MODE_OUTPUT); 
     gpio_set_level(num, 0); 
     esp_rom_delay_us(18000);
@@ -68,7 +73,7 @@ bool dht11_read(gpio_num_t num, dht11_data* sensor_data){
         }
     }
     int sum = (bytes[0] + bytes[1] + bytes[2] + bytes[3]);
-    if((sum && 0xFF) == bytes[4]){
+    if((sum & 0xFF) == bytes[4]){
         sensor_data->temperature = bytes[2] + (bytes[3]/10.0f);
         sensor_data->humidity = bytes[0] +(bytes[1]/10.0f);
         return true;

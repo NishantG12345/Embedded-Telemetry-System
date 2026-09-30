@@ -1,6 +1,8 @@
 #include "../drivers/dht11.h"
 #include "../system/messages.h"
 #include "sensor_task.h"
+#include "../drivers/light_sensor.h"
+#include <stdio.h>
 
 void sensor_task(void *args){
     dht11_data dht_data;
@@ -14,21 +16,22 @@ void sensor_task(void *args){
         sensor_data.temperature = dht_data.temperature;
         sensor_data.humidity = dht_data.humidity;  
         if(light_sensor_read(&light_reading)){
-            sensor_data.adc_reading = light_reading;
-        }
-        else{
-            printf("Light Reading Failed\n");
-        }
-        if(xQueueSend(task_args->queue, &sensor_data, pdMS_TO_TICKS(100)) == pdPASS){
+            sensor_data.light_reading = light_reading;
+            if(xQueueSend(task_args->control_queue, &sensor_data, pdMS_TO_TICKS(100)) == pdPASS){
             printf("Successfully added sensor data to queue\n");
+            }
+            if(xQueueSend(task_args->display_queue, &sensor_data, pdMS_TO_TICKS(100)) == pdPASS){
+            printf("Successfully added sensor data to queue\n");
+            }
         }
         else{
-            printf("Sensor Queue is full");
+            printf("Couldn't read light\n");
         }
+    } 
     else{
-        printf("Couldn't read DHT\n");
+        printf("Couldn't read DHT \n");
     }
-    }
+    
     vTaskDelayUntil(&lastWakeTime, period); 
     }
 }
