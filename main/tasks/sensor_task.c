@@ -10,13 +10,14 @@ void sensor_task(void *args){
     sensor_task_args_t *task_args = (sensor_task_args_t *) args;
     TickType_t lastWakeTime = xTaskGetTickCount(); 
     TickType_t period = pdMS_TO_TICKS(2000); 
-    uint16_t light_reading;
+    bool light_detected;   
     while(1){
     if(dht11_read(task_args->gpio_num, &dht_data)){
         sensor_data.temperature = dht_data.temperature;
         sensor_data.humidity = dht_data.humidity;  
-        if(light_sensor_read(&light_reading)){
-            sensor_data.light_reading = light_reading;
+        if(light_sensor_read(&light_detected)){
+            printf("LIGHT GPIO = %d\n", light_detected);
+            sensor_data.light_detected = light_detected;
             if(xQueueSend(task_args->control_queue, &sensor_data, pdMS_TO_TICKS(100)) == pdPASS){
             printf("Successfully added sensor data to queue\n");
             }

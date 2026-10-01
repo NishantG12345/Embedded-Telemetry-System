@@ -1,7 +1,10 @@
 #ifndef LIGHT_SENSOR_H
 #define LIGHT_SENSOR_H
+
 #include <stdbool.h>
-#include <stdint.h>
-bool light_sensor_init(void);
-bool light_sensor_read(uint16_t *light_reading);
+#include "driver/gpio.h"
+
+bool light_sensor_init(gpio_num_t num);
+bool light_sensor_read(bool *light_detected);
+
 #endif

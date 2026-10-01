@@ -1,6 +1,6 @@
 idf_component_register(
     SRCS
-        "embedded-telemetry-system.c"
+        "main.c"
 
         "drivers/dht11.c"
         "drivers/light_sensor.c"

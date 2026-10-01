@@ -9,7 +9,7 @@ void control_task(void *args){
     while(1){
         if(xQueueReceive(task_args->queue, &sensor_data, portMAX_DELAY) == pdPASS){
             sensor_data.temperature = (9/5.0f) * (sensor_data.temperature) + 32;
-            temperature_state_t state = determine_temp_state(sensor_data.temperature); 
+            temperature_state_t state = temp_state(sensor_data.temperature); 
             switch(state){
                 case COLD:
                 rgb_led_set_color(RGB_BLUE);

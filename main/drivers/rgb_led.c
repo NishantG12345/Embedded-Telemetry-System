@@ -19,24 +19,26 @@ void rgb_led_set_color(colors_t color){
             gpio_set_level(red_gpio, 1);
             gpio_set_level(green_gpio, 0);
             gpio_set_level(blue_gpio, 0);
-
+            printf("RGB -> RED\n");
             break;
         case RGB_GREEN:
             gpio_set_level(red_gpio, 0); 
             gpio_set_level(green_gpio, 1);
             gpio_set_level(blue_gpio, 0);
-
+            printf("RGB -> GREEN\n");
             break;
         case RGB_BLUE:
             gpio_set_level(red_gpio, 0);
             gpio_set_level(green_gpio, 0); 
             gpio_set_level(blue_gpio, 1);
+            printf("RGB -> BLUE\n");
 
             break;
         case RGB_NONE:
             gpio_set_level(red_gpio, 0);  
             gpio_set_level(green_gpio, 0);
             gpio_set_level(blue_gpio, 0);
+            printf("RGB -> OFF\n");
 
             break;
     }

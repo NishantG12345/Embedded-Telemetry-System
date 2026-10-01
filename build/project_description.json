@@ -1,7 +1,7 @@
 {
     "version":            "1.3",
     "project_name":       "embedded-telemetry-system",
-    "project_version":    "1",
+    "project_version":    "e643895-dirty",
     "project_path":       "/home/nishant/embedded-telemetry-system/embedded-telemetry-system",
     "idf_path":           "/home/nishant/.espressif/v6.1/esp-idf",
     "build_dir":          "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/build",
@@ -1870,7 +1870,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/build/esp-idf/main/libmain.a",
-            "sources": [ "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/embedded-telemetry-system.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/drivers/dht11.c" ],
+            "sources": [ "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/main.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/drivers/dht11.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/drivers/light_sensor.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/drivers/oled.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/drivers/rgb_led.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/drivers/buzzer.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/drivers/pir.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/system/system_state.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/tasks/sensor_task.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/tasks/display_task.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/tasks/control_task.c", "/home/nishant/embedded-telemetry-system/embedded-telemetry-system/main/tasks/event_task.c" ],
             "include_dirs": [ "." ]
         },
         "mbedtls": {

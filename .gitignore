@@ -1,0 +1,14 @@
+# ESP-IDF build output
+build/
+
+# VS Code
+.vscode/
+
+# OS/editor junk
+.DS_Store
+*.swp
+*~
+
+# Python cache
+__pycache__/
+*.pyc

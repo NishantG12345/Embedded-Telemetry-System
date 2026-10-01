@@ -44,8 +44,18 @@ TaskHandle_t control_task_name;
 
 dht11_init(GPIO_NUM_16);
 oled_init(GPIO_NUM_21, GPIO_NUM_22);
-light_sensor_init();
+light_sensor_init(GPIO_NUM_34);
 rgb_led_init(GPIO_NUM_5, GPIO_NUM_18, GPIO_NUM_19);
+rgb_led_set_color(RGB_RED);
+vTaskDelay(pdMS_TO_TICKS(1000));
+
+rgb_led_set_color(RGB_GREEN);
+vTaskDelay(pdMS_TO_TICKS(1000));
+
+rgb_led_set_color(RGB_BLUE);
+vTaskDelay(pdMS_TO_TICKS(1000));
+
+rgb_led_set_color(RGB_NONE);
 buzzer_init(GPIO_NUM_23);
 
     xTaskCreate(
@@ -76,14 +86,14 @@ buzzer_init(GPIO_NUM_23);
     ); 
     pir_init(GPIO_NUM_13, event_task_handle);
 
-    xTaskCreate(
-        control_task,
-        "control_task",
-        2048,
-        &control_args,
-        4,
-        &control_task_name
-    ); 
+    // xTaskCreate(
+    //     control_task,
+    //     "control_task",
+    //     2048,
+    //     &control_args,
+    //     4,
+    //     &control_task_name
+    // ); 
     
     
 }
